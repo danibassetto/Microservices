@@ -20,7 +20,7 @@ namespace MsCatalog.Data
             {
                 new Product()
                 {
-                    Id = "1",
+                    Id = 1,
                     Name = "Iphone X",
                     Description = "Iphone X",
                     Image = "product-1.png",
@@ -29,7 +29,7 @@ namespace MsCatalog.Data
                 },
                 new Product()
                 {
-                    Id = "2",
+                    Id = 2,
                     Name = "Samsung Note10",
                     Description = "Samsung Note10",
                     Image = "product-2.png",
