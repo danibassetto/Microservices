@@ -17,3 +17,10 @@ services:
       - catalogdb
     ports:
       - "8000:80"
+
+  msbasket:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
