@@ -23,5 +23,64 @@ namespace MsCatalog.Controllers
 
             return Ok(products);
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        public async Task<ActionResult<Product>> GetProductById(long id)
+        {
+            var product = await _repository.GetProduct(id);
+            if(product is null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
+        [HttpGet("GetProductByCategory/{category}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Product>))]
+        public async Task<ActionResult<Product>> GetProductByCategory(string category)
+        {
+            if (category is null)
+                return BadRequest("Invalid category");
+
+            var products = await _repository.GetProductByCategory(category);
+
+            return Ok(products);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
+        {
+            if (product is null)
+                return BadRequest("Invalid product");
+
+            await _repository.CreateProduct(product);
+
+            return CreatedAtRoute("GetProduct", new { id = product.Id }, product); // usado para criar uma resposta HTTP 201 e retornar a representação do novo produto criado, juntamente com a URI para acessar esse produto no futuro.
+        }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
+        public async Task<IActionResult> UpdateProduct([FromBody] Product product)
+        {
+            if (product is null)
+                return BadRequest("Invalid product");
+
+            return Ok(await _repository.UpdateProduct(product));
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        public async Task<IActionResult> DeleteProductById(long id)
+        {
+            return Ok(await _repository.DeleteProduct(id));
+        }
+
     }
 }
