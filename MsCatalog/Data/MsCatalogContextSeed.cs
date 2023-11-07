@@ -35,6 +35,24 @@ namespace MsCatalog.Data
                     Image = "product-2.png",
                     Price = 1000.00M,
                     Category = "Smartphone"
+                },
+                new Product()
+                {
+                    Id = "507f1f77bcf86cd799439013",
+                    Name = "Redmi",
+                    Description = "Redmi",
+                    Image = "product-3.png",
+                    Price = 700M,
+                    Category = "Smartphone"
+                },
+                new Product()
+                {
+                    Id = "607f1f77bcf86cd799439014",
+                    Name = "Havaianas",
+                    Description = "Havaianas",
+                    Image = "product-4.png",
+                    Price = 100M,
+                    Category = "Sapatos"
                 }
             };
         }
