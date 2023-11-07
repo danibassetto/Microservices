@@ -7,7 +7,7 @@ namespace MsCatalog.Entities
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public long Id { get; set; }
+        public string Id { get; set; }
         [BsonElement("Name")]
         public string Name { get; set; }
         public string Category { get; set; }

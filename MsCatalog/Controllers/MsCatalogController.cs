@@ -24,10 +24,10 @@ namespace MsCatalog.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:length(24)}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Product>> GetProductById(long id)
+        public async Task<ActionResult<Product>> GetProductById(string id)
         {
             var product = await _repository.GetProduct(id);
             if(product is null)
@@ -75,9 +75,9 @@ namespace MsCatalog.Controllers
             return Ok(await _repository.UpdateProduct(product));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:length(24)}")]
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteProductById(long id)
+        public async Task<IActionResult> DeleteProductById(string id)
         {
             return Ok(await _repository.DeleteProduct(id));
         }

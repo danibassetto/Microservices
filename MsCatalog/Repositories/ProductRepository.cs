@@ -18,7 +18,7 @@ namespace MsCatalog.Repositories
             await _context.Products.InsertOneAsync(product);
         }
 
-        public async Task<bool> DeleteProduct(long id)
+        public async Task<bool> DeleteProduct(string id)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
 
@@ -27,7 +27,7 @@ namespace MsCatalog.Repositories
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
 
-        public async Task<Product> GetProduct(long id)
+        public async Task<Product> GetProduct(string id)
         {
             return await _context.Products.Find(p => p.Id == id).FirstOrDefaultAsync();
         }
