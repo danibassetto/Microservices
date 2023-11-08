@@ -4,7 +4,7 @@ using MsDiscount.Repositories;
 
 namespace MsDiscount.Controllers
 {
-    [Route("api/v1/[cotroller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class DiscountController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace MsDiscount.Controllers
         [HttpPut]
         public async Task<ActionResult<Coupon>> UpdateDiscount([FromBody] Coupon coupon)
         {
-            return Ok(await _repository.CreateDiscount(coupon));
+            return Ok(await _repository.UpdateDiscount(coupon));
         }
 
         [HttpDelete("{productName}", Name = "DeleteDiscount")]
